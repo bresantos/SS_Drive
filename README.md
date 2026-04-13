@@ -1,128 +1,124 @@
 # 💜 SS_Drive
 
-> **Sistema de Locadora de Veículos**
+> Sistema de Locadora de Veículos
 
-SS_Drive é uma plataforma para gerenciamento de locação de veículos, desenvolvida com Domain-Driven Design (DDD). Permite controlar clientes, veículos e todo o processo de aluguel.
+SS_Drive é uma plataforma para gerenciamento de locação de veículos, desenvolvida com Domain-Driven Design (DDD). Permite controlar clientes, veículos e todo o processo de aluguel de forma organizada e segura.
 
 ---
 
 ## 👥 Autores
 
-**Projeto Acadêmico FIAP - Domain Driven Design 2026** 
-- Desenvolvido por:
-- Brenda Santos | RM561258
-- Lucas Santana | RM566261
+**Projeto Acadêmico — FIAP | Domain Driven Design (2026)**
+
+Brenda Santos — RM561258 | Lucas Santana — RM566261
 
 ---
 
-## 🎯 O Problema
+## 🎯 Problema
 
-Gestionar uma locadora de veículos envolve lidar com múltiplas informações: clientes, documentos, veículos em diferentes categorias e controle de aluguéis. Sem um sistema estruturado, esse processo pode gerar erros, perda de dados e falta de controle sobre a disponibilidade dos veículos.
-
-SS_Drive resolve isso.
+Gerenciar uma locadora envolve múltiplas informações: clientes, documentos, veículos e locações. Sem um sistema estruturado, isso gera erros de disponibilidade, falhas em cobranças e perda de controle operacional. O SS_Drive resolve esse cenário com uma modelagem clara e automatizada.
 
 ---
 
-## 🚀 Funcionalidades Principais
+## 🚀 Funcionalidades
 
-### ✅ Cadastro de Clientes - **Cliente**: Gerenciamento completo com dados pessoais | **CNH**: Validação de habilitação do cliente | **Endereço**: Informações de contato e localização
+### 👤 Clientes
+Cadastro completo de clientes | Validação de CNH | Armazenamento de endereço
 
-### ✅ Gestão de Veículos - **Veículo**: Cadastro com placa, marca, modelo e ano | **Categorias**: ECONOMICO (R$ 80/dia), INTERMEDIARIO (R$ 120/dia), EXECUTIVO (R$ 200/dia) | **Status**: Controle de disponibilidade (DISPONIVEL / ALUGADO)
+### 🚗 Veículos
+Cadastro com placa, marca, modelo e ano | Categorias: Econômico (R$ 80/dia), Intermediário (R$ 120/dia), Executivo (R$ 200/dia) | Controle de status: Disponível / Alugado
 
-### ✅ Controle de Locações - **Duração**: Cálculo automático de dias de locação | **Atrasos**: Detecção e cobrança de multas (R$ 50/dia) | **Valores**: Cálculo de valor base, multas e total
-
----
-
-## 🏗️ Arquitetura do Projeto
-locadora/ 
-├── Main.java # Ponto de entrada da aplicação 
-├── Testador.java # Classe de testes 
-│ ├── cliente/ 
-│ ├── Cliente.java # Entidade principal do cliente 
-│ ├── CNH.java # Value Object - CNH 
-│ └── Endereco.java # Value Object - Endereço 
-│ ├── veiculo/ 
-│ ├── Veiculo.java # Entidade principal do veículo 
-│ ├── CategoriaVeiculo.java # Enum - Categorias com valores 
-│ └── StatusVeiculo.java # Enum - Status do veículo 
-│ └── locacao/ 
-│ └── Locacao.java # Entidade - Controle de aluguéis
-
-
-### 💡 Decisões Técnicas
-
-**Java Puro**: Desenvolvimento simples, sem dependências externas | **Domain-Driven Design**: Estrutura organizada por domínios do negócio | **Value Objects**: CNH e Endereço como objetos imutáveis | **Enums**: Categorias e status com valores pré-definidos | **Métodos de Cálculo**: Lógica de negócio encapsulada nas entidades
+### 📄 Locações
+Cálculo automático de dias | Cálculo de valor base | Multa por atraso: R$ 50/dia | Valor total da locação
 
 ---
 
-## 📂 Classes e Métodos
+## 🏗️ Arquitetura
+```
+SS_Drive/
+├─── com/
+│    ├─── locadora/
+│    │    ├─── Main.java
+│    │    ├─── Testador.java
+│    │    ├─── cliente/
+│    │    │    ├─── Cliente.java
+│    │    │    ├─── CNH.java
+│    │    │    └─── Endereco.java
+│    │    ├─── veiculo/
+│    │    │    ├─── Veiculo.java
+│    │    │    ├─── CategoriaVeiculo.java
+│    │    │    └─── StatusVeiculo.java
+│    │    └─── locacao/
+│    │         └─── Locacao.java
+```
+---
 
-### Cliente - Arquivo: `Cliente.java`
+## 💡 Decisões Técnicas
 
-**Atributos:** id, nome, cpf, telefone, email, endereco (Value Object), cnh (Value Object)
-
-**Métodos:** `atualizarNome()` - Atualiza o nome do cliente | `atualizarTelefone()` - Atualiza o telefone | `atualizarEmail()` - Atualiza o e-mail | `atualizarEndereco()` - Atualiza o endereço | `temCnhValida()` - Verifica se a CNH está válida
-
-### CNH (Value Object) - Arquivo: `CNH.java`
-
-**Atributos:** numero, dataVencimento
-
-**Métodos:** `estaValida()` - Retorna true se não estiver vencida
-
-### Endereco (Value Object) - Arquivo: `Endereco.java`
-
-**Atributos:** rua, numero, bairro, cidade, cep
-
-### Veiculo - Arquivo: `Veiculo.java`
-
-**Atributos:** id, placa, marca, modelo, ano, categoria (enum), status (enum)
-
-**Métodos:** `estaDisponivel()` - Verifica se está disponível | `marcarComoAlugado()` - Altera status para ALUGADO | `marcarComoDisponivel()` - Altera status para DISPONIVEL | `getValorDiaria()` - Retorna valor baseado na categoria
-
-### CategoriaVeiculo (Enum) - Arquivo: `CategoriaVeiculo.java`
-
-ECONOMICO - R$ 80,00 | INTERMEDIARIO - R$ 120,00 | EXECUTIVO - R$ 200,00
-
-### StatusVeiculo (Enum) - Arquivo: `StatusVeiculo.java`
-
-Valores: DISPONIVEL, ALUGADO
-
-### Locacao - Arquivo: `Locacao.java`
-
-**Atributos:** id, clienteId, veiculoId, categoria, dataRetirada, dataPrevistaDevolucao, dataRealDevolucao
-
-**Métodos:** `calcularDiasLocacao()` - Dias entre retirada e devolução | `calcularDiasAtraso()` - Dias de atraso na devolução | `calcularValorBase()` - Diária × dias de locação | `calcularMulta()` - R$ 50,00 × dias de atraso | `calcularValorTotal()` - Valor base + multa | `registrarDevolucao()` - Registra data real de devolução
+Java puro → simplicidade e foco na lógica | DDD → organização por domínio | Value Objects → CNH e Endereço imutáveis | Enums → categorias e status definidos | Encapsulamento → regras dentro das entidades
 
 ---
 
-## 🚀 Como Rodar
+## 📂 Modelagem
 
-### Pré-requisitos: JDK 8+ instalado | IDE Java (VS Code, IntelliJ, Eclipse) ou terminal
+### Cliente (Cliente.java)
 
-### Compilação: `cd locadora` → `javac Main.java`
+**Atributos:** id, nome, cpf, telefone, email, endereço, cnh
 
-### Execução: `java Main`
+**Métodos:** `atualizarNome()`, `atualizarTelefone()`, `atualizarEmail()`, `atualizarEndereco()`, `temCnhValida()`
+
+### CNH (CNH.java)
+
+**Atributos:** número, data de vencimento
+
+**Método:** `estaValida()`
+
+### Endereço (Endereco.java)
+
+**Atributos:** rua, número, bairro, cidade, CEP
+
+### Veículo (Veiculo.java)
+
+**Atributos:** id, placa, marca, modelo, ano, categoria, status
+
+**Métodos:** `estaDisponivel()`, `marcarComoAlugado()`, `marcarComoDisponivel()`, `getValorDiaria()`
+
+### CategoriaVeiculo (Enum)
+
+ECONOMICO — R$ 80,00 | INTERMEDIARIO — R$ 120,00 | EXECUTIVO — R$ 200,00
+
+### StatusVeiculo (Enum)
+
+DISPONIVEL | ALUGADO
+
+### Locação (Locacao.java)
+
+**Atributos:** id, clienteId, veiculoId, datas
+
+**Métodos:** `calcularDiasLocacao()`, `calcularDiasAtraso()`, `calcularValorBase()`, `calcularMulta()`, `calcularValorTotal()`, `registrarDevolucao()`
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Execução
 
-| Tecnologia   | Versão | Propósito |
-|--------------|--------|----------|
-| Java         | 8+     | Linguagem principal |
-| Java Time API| -      | Manipulação de datas |
-| DDD          | -      | Arquitetura |
+### Pré-requisitos
+JDK 8+ | IDE Java ou terminal
+
+### Rodar projeto
+`cd locadora` → `javac Main.java` → `java Main`
+
+---
+
+## 🛠️ Tecnologias
+
+Java 8+ | Java Time API | Domain-Driven Design
 
 ---
 
 ## 📈 Próximos Passos
 
-**Curto Prazo:** Interface gráfica (Swing/JavaFX) | Persistência em banco de dados | Validação de CPF
+**Curto prazo:** Interface gráfica | Persistência em banco | Validação de CPF
 
-**Médio Prazo:** API REST | Sistema de reservas | Notificações de vencimento de CNH
+**Médio prazo:** API REST | Sistema de reservas | Notificações
 
-**Longo Prazo:** Aplicação web | App mobile | Integração com sistemas de pagamento
-
----
-
-**Feito com 💜 por SS_Drive Team**
+**Longo prazo:** Aplicação web | App mobile | Integração com pagamentos
