@@ -6,6 +6,15 @@ SS_Drive é uma plataforma para gerenciamento de locação de veículos, desenvo
 
 ---
 
+## 👥 Autores
+
+**Projeto Acadêmico FIAP - Domain Driven Design 2026** 
+- Desenvolvido por:
+- Brenda Santos | RM561258
+- Lucas Santana | RM566261
+
+---
+
 ## 🎯 O Problema
 
 Gestionar uma locadora de veículos envolve lidar com múltiplas informações: clientes, documentos, veículos em diferentes categorias e controle de aluguéis. Sem um sistema estruturado, esse processo pode gerar erros, perda de dados e falta de controle sobre a disponibilidade dos veículos.
@@ -113,13 +122,6 @@ Valores: DISPONIVEL, ALUGADO
 **Médio Prazo:** API REST | Sistema de reservas | Notificações de vencimento de CNH
 
 **Longo Prazo:** Aplicação web | App mobile | Integração com sistemas de pagamento
-
----
-
-## 👥 Autores
-
-**Projeto Acadêmico FIAP - Domain Driven Design 2026** 
-- Desenvolvido por: Brenda Santos e Lucas Santana
 
 ---
 
